@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 import datetime
 import sqlalchemy
 import json
+import usable_image_scraper
 
 from django.conf import settings
 
@@ -30,11 +31,19 @@ def view_random(request):
     url_to_redirect_to = "view/" + str(random_image_pk)
     return HttpResponseRedirect(url_to_redirect_to)
 
-def view_image(request, image__pk):
+def view_image(request, repo, image__pk):
+    repo = str(repo)
+    myscraper = usable_image_scraper.scraper.mkscraper(repo)
+    print image__pk
+    image = myscraper.get_image_metadata(int(image__pk))
+    image = image.__dict__
+    
+    '''
     db_connection = get_metadata_db_connection()
     image_tuples = db_connection.execute("select * from phil where id = %s" % image__pk).fetchone().items()
     image = {}
     image.update(image_tuples)
+    '''
 
     if not image['url_to_lores_img']:
         referrer = request.META.get('HTTP_REFERER')

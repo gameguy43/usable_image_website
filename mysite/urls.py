@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     
     (r'^view_random$', 'mysite.mainapp.views.view_random'),
 
-    (r'^view/(?P<image__pk>\d+)$', 'mysite.mainapp.views.view_image'),
+    (r'^(?P<repo>.*)/view/(?P<image__pk>\d+)$', 'mysite.mainapp.views.view_image'),
 
     (r'^static/(?P<path>.*)$', 'django.views.static.serve',
                 {'document_root': settings.STATIC_DOC_ROOT, 'show_indexes': True}),
