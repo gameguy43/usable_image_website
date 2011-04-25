@@ -25,22 +25,10 @@ class SimpleTest(TestCase):
     def test_image_files_actually_exist(self):
         c = Client()
         for id in self.scraper.imglib.tests.known_good_indeces:
-            url = self.scraper_name + '/view/' + str(id)
+            url = '/' + self.scraper_name + '/view/' + str(id)
             # go to the page for a known_good thing
             response = c.get(url)
             # assert that we successfully load a page
             self.assertEqual(response.status_code, 200)
             # TODO: look for the known_good metadata as a substring of the contents of the page
             #self.assertEqual()
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.failUnlessEqual(1 + 1, 2)
-
-__test__ = {"doctest": """
-Another way to test that 1 + 1 is equal to 2.
-
->>> 1 + 1 == 2
-True
-"""}
