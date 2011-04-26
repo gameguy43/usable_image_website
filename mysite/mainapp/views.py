@@ -63,7 +63,5 @@ def view_image(request, repo, image__pk):
 
     html = myscraper.get_image_html_repr(image__pk)
 
-    return HttpResponse(html)
-
-
-    return render_to_response(template, {'image': image, 'image_urls': image_urls})
+    #return HttpResponse(html)
+    return render_to_response('image.html', {'html': html})
