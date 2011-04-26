@@ -35,6 +35,10 @@ def view_image(request, repo, image__pk):
     image__pk = int(image__pk)
     repo = str(repo)
     myscraper = usable_image_scraper.scraper.mkscraper(repo)
+    kwargs = {
+        'web_data_base_dir' : settings.RELATIVE_DATA_ROOT,
+    }
+    myscraper.set_web_vars(**kwargs)
     image = myscraper.get_image_metadata_dict(image__pk)
 
     if not image['url_to_lores_img']:
