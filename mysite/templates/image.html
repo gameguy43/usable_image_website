@@ -1,7 +1,14 @@
 {% extends "main.html" %}
 
 
+
 {% block main %}
+
+<div id="navlinks"> 
+    <a href="/{{repo}}/view/{{prev_id}}">Prev</a> 
+        &nbsp;
+    <a style="float: right;" href="/{{repo}}/view/{{next_id}}">Next</a> 
+</div> 
 
             {{html|safe}}
 

@@ -68,4 +68,12 @@ def view_image(request, repo, image__pk):
     html = myscraper.get_image_html_repr(image__pk)
 
     #return HttpResponse(html)
-    return render_to_response('image.html', {'html': html})
+    next_id = image__pk+1
+    prev_id = image__pk-1
+    data = {
+        'repo' : repo,
+        'next_id' : next_id,
+        'prev_id' : prev_id,
+        'html': html,
+        }
+    return render_to_response('image.html', data)

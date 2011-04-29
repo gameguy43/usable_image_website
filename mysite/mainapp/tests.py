@@ -15,7 +15,7 @@ from django.test import TestCase
 
 class SimpleTest(TestCase):
     def setUp(self):
-        self.scraper_name = 'cdc_phil'
+        self.scraper_name = 'fema'
         self.scraper = usable_image_scraper.scraper.mkscraper(self.scraper_name)
         '''
         scrapers = []
