@@ -19,7 +19,11 @@ def get_metadata_db_connection():
 
 
 def index(request):
-    return render_to_response('index.html')
+    image_databases = usable_image_scraper.config.image_databases
+    data = {
+        'image_databases' : image_databases,
+        }
+    return render_to_response('index.html', data)
 
 def about(request):
     return render_to_response('index.html')

@@ -5,22 +5,28 @@
     <div class="homepage" id="content-onecol"> 
 
 
-<h2>A Project to Mirror, Cross-post, and Index the Images and Metadata in the Center for Disease Control's Public Health Image Library.</h2> 
+<h2>A Project to Mirror, Index, and Cross-Post the Images and Metadata in Federal Government Image Libraries.</h2> 
  
- 
+{% for image_database, db in image_databases.items %}
+<h3>{{db.long_name}}</h3>
 <p class="big_homepage_links"> 
 <span> 
-    <a href="/view_random">View a random image &raquo;</a> 
+    <a href="/{{image_database}}/view_random">View a random image &raquo;</a> 
 </span> 
  
 <span> 
-    <a href="/view/1">Browse the database from the beginning &raquo;</a> 
+    <a href="/{{image_database}}/view/1">Browse the database from the beginning &raquo;</a> 
 </span> 
  
+</p> 
+{% endfor %}
+
+<h3>General</h3>
+<p class="big_homepage_links"> 
 <span> 
     <a href="static/data/">Browse the raw data&raquo;</a> 
 </span> 
-</p> 
+
  
 <p> 
 It is certainly true that the CDC PHIL images are already "released" in several important ways. Our project makes them more accessible and usable. 

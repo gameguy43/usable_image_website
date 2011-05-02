@@ -26,7 +26,7 @@ def is_iterable(x):
 
 def flatten(x):
     result = []
-    # if it's already flat, just return it
+    # if it's already not even a list or something iterable, just return it
     if not is_iterable(x):
         return x
     for el in x:
@@ -71,4 +71,3 @@ class SimpleTest(TestCase):
             # make sure we have everything on the list
             for thing in things_to_look_for:
                 self.assertContains(response, thing)
-                
