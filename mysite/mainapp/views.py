@@ -26,9 +26,9 @@ def index(request):
     return render_to_response('index.html', data)
 
 def about(request):
-    return render_to_response('index.html')
+    return render_to_response('about.html')
 
-def view_random(request):
+def view_random(request, repo):
     highest_image_pk = 12049
     # TODO: actually write code to figure out the above
     random_image_pk = random.randrange(highest_image_pk)

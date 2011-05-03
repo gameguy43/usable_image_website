@@ -19,7 +19,7 @@ urlpatterns = patterns('',
     (r'^$', 'mysite.mainapp.views.index'),
     (r'^about$', 'mysite.mainapp.views.about'),
     
-    (r'^view_random$', 'mysite.mainapp.views.view_random'),
+    (r'^(?P<repo>.*)/view_random$', 'mysite.mainapp.views.view_random'),
 
     (r'^(?P<repo>.*)/view/(?P<image__pk>\d+)$', 'mysite.mainapp.views.view_image'),
 
