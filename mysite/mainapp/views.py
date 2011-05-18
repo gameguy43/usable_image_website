@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.utils import simplejson
 #from mysite.mainapp.models 
 import datetime
 import sqlalchemy
@@ -37,6 +38,13 @@ def view_random(request, repo):
     random_image_pk = random.randrange(highest_image_pk)
     url_to_redirect_to = "view/" + str(random_image_pk)
     return HttpResponseRedirect(url_to_redirect_to)
+
+def view_image_json(request, repo, image__pk):
+    image__pk = int(image__pk)
+    repo = str(repo)
+    myscraper = usable_image_scraper.scraper.mkscraper(repo)
+    image = myscraper.get_image_metadata_dict(image__pk)
+    return HttpResponse(simplejson.dumps(image), mimetype='application/json')
 
 def view_image(request, repo, image__pk):
     image__pk = int(image__pk)
@@ -78,6 +86,7 @@ def view_image(request, repo, image__pk):
     next_id = image__pk+1
     prev_id = image__pk-1
     data = {
+        'id' : image__pk,
         'repo' : repo,
         'next_id' : next_id,
         'prev_id' : prev_id,
