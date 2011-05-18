@@ -8,8 +8,9 @@
 <h2>A Project to Mirror, Index, and Cross-Post the Images and Metadata in Federal Government Image Libraries.</h2> 
  
 {% for image_database, db in image_databases.items %}
-<h3>{{db.long_name}}</h3>
+<h3>{{db.long_name}} <span class="num_images">({{db.num_images}} images)</span></h3>
 <p class="big_homepage_links"> 
+
 <!--
 this kinda works but it's pretty hacky
 <span> 

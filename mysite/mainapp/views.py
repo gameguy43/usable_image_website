@@ -20,6 +20,9 @@ def get_metadata_db_connection():
 
 def index(request):
     image_databases = usable_image_scraper.config.image_databases
+    for image_database, data in image_databases.items():
+        myscraper = usable_image_scraper.scraper.mkscraper(image_database)
+        image_databases[image_database]['num_images'] = myscraper.get_num_images()
     data = {
         'image_databases' : image_databases,
         }
