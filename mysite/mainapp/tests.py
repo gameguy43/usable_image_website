@@ -1,8 +1,7 @@
 import unittest2 as unittest
-import config
 import os
 import usable_image_scraper.scraper 
-import config
+import usable_image_scraper.config as config
 from django.test.client import Client
 """
 This file demonstrates two different styles of tests (one doctest and one

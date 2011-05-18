@@ -5,7 +5,7 @@ TEMPLATE_DEBUG = DEBUG
 
 
 # path to here, including the mysite dir at the end. with trailing slash
-ABS_PATH_TO_THIS_REPO = '/home/pyrak/workspace/usable_images/webs/mysite/'
+ABS_PATH_TO_THIS_REPO = '/home/usableimages/www/images.freeculture.org/mysite/'
 
 DATA_ROOT = ABS_PATH_TO_THIS_REPO + 'static/data/'
 
@@ -96,6 +96,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'mysite.mainapp',
+    'usable_image_scraper',
 )
 
 STATIC_DOC_ROOT = ABS_PATH_TO_THIS_REPO  + 'static/'
