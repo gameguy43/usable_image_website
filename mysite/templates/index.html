@@ -5,7 +5,45 @@
     <div class="homepage" id="content-onecol"> 
 
 
-<h2>A Project to Mirror, Index, and Cross-Post the Images and Metadata in Federal Government Image Libraries.</h2> 
+<!--
+<h2>A Project to Consolidate, Mirror, and provide a machine interface for the Images and Metadata in Federal Government Image Libraries.</h2> 
+-->
+
+
+<h2>
+Several federal government agencies have photo repository websites which are isolated silos. This is a project to consolidate them in the interest of making these public domain images easier to find and use.
+</h2>
+
+<p class="big_homepage_links"> 
+<!--
+<span> 
+    <a href="/about">About &raquo;</a> 
+</span> 
+-->
+<span> 
+    <a href="http://wiki.releaseourdata.com/index.php?title=Usable_Data_Criteria_1.0">Usable Data Criteria 1.0 </a> 
+</span> 
+<span> 
+    <a href="http://madebyparker.com/blog/2011/03/usable-more-than-just-open/">How Do We Make Public Domain Image Search Actually Work?</a> 
+</span> 
+</p>
+
+<h3>
+The Usable Image Scraper Library
+</h3>
+<p>
+A python library for maintaining a machine-readable mirror of several image repository websites. 
+</p>
+<p class="big_homepage_links"> 
+<span> 
+    <a href="https://github.com/gameguy43/usable_image_scraper">Usable Image Scraper Library &raquo;</a> 
+</span> 
+</p>
+
+<br />
+<h2>
+Completed Image Repositories:
+</h2>
  
 {% for image_database, db in image_databases.items %}
 <h3>{{db.long_name}} <span class="num_images">({{db.num_images}} images)</span></h3>
@@ -29,19 +67,19 @@ this kinda works but it's pretty hacky
 </p> 
 {% endfor %}
 
-<h3>General</h3>
+
+
+<h3>
+All
+</h3>
 <p class="big_homepage_links"> 
-<span> 
-    <a href="/about">About &raquo;</a> 
-</span> 
 <span> 
     <a href="static/data/">Browse the raw data &raquo;</a> 
 </span> 
 <span> 
-    <a href="https://github.com/gameguy43/usable_image_scraper">General scraper code &raquo;</a> 
+    <a href="https://github.com/gameguy43/usable_image_website">Code for this website &raquo;</a> 
 </span> 
 </p>
-
 
 
 </div>
