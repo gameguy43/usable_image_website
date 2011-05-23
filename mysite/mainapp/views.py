@@ -83,8 +83,8 @@ def view_image(request, repo, image__pk):
     html = myscraper.get_image_html_repr(image__pk)
 
     #return HttpResponse(html)
-    next_id = image__pk+1
-    prev_id = image__pk-1
+    next_id = myscraper.get_next_successful_image_id(image__pk)
+    prev_id = myscraper.get_prev_successful_image_id(image__pk)
     data = {
         'id' : image__pk,
         'repo' : repo,
