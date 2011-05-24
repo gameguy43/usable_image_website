@@ -23,7 +23,7 @@ def index(request):
     image_databases = usable_image_scraper.config.image_databases
     for image_database, data in image_databases.items():
         myscraper = usable_image_scraper.scraper.mkscraper(image_database)
-        image_databases[image_database]['num_images'] = myscraper.get_num_images()
+        image_databases[image_database]['num_images'] = myscraper.db.get_num_images()
     data = {
         'image_databases' : image_databases,
         }
@@ -43,7 +43,7 @@ def view_image_json(request, repo, image__pk):
     image__pk = int(image__pk)
     repo = str(repo)
     myscraper = usable_image_scraper.scraper.mkscraper(repo)
-    image = myscraper.get_image_metadata_dict(image__pk)
+    image = myscraper.db.get_image_metadata_dict(image__pk)
     return HttpResponse(simplejson.dumps(image), mimetype='application/json')
 
 def view_image(request, repo, image__pk):
@@ -54,7 +54,7 @@ def view_image(request, repo, image__pk):
         'web_data_base_dir' : settings.RELATIVE_DATA_ROOT,
     }
     myscraper.set_web_vars(**kwargs)
-    image = myscraper.get_image_metadata_dict(image__pk)
+    image = myscraper.db.get_image_metadata_dict(image__pk)
 
     if not image['url_to_lores_img']:
         referrer = request.META.get('HTTP_REFERER')
@@ -83,8 +83,8 @@ def view_image(request, repo, image__pk):
     html = myscraper.get_image_html_repr(image__pk)
 
     #return HttpResponse(html)
-    next_id = myscraper.get_next_successful_image_id(image__pk)
-    prev_id = myscraper.get_prev_successful_image_id(image__pk)
+    next_id = myscraper.db.get_next_successful_image_id(image__pk)
+    prev_id = myscraper.db.get_prev_successful_image_id(image__pk)
     data = {
         'id' : image__pk,
         'repo' : repo,
