@@ -56,7 +56,7 @@ def view_image(request, repo, image__pk):
     myscraper.set_web_vars(**kwargs)
     image = myscraper.db.get_image_metadata_dict(image__pk)
 
-    if not image['url_to_lores_img']:
+    if not image or not image['url_to_lores_img']:
         referrer = request.META.get('HTTP_REFERER')
         if not referrer.find('/view/') == (-1):
             prev_id = int(referrer.rstrip('/').rsplit('/', 1)[1])

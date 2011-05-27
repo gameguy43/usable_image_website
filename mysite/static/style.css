@@ -228,3 +228,8 @@ ol.commentlist li.thread-odd {}
 #content-onecol .datapoint .label{
     color: black;
 }
+
+#download_links td{
+    padding: 3px 5px 3px 5px;
+    border: 1px solid #ededed;
+}
