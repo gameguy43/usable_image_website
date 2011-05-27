@@ -62,13 +62,13 @@ def view_image(request, repo, image__pk):
             prev_id = int(referrer.rstrip('/').rsplit('/', 1)[1])
             # if they hit the previous button
             if int(image__pk) < prev_id:
-                url_to_redirect_to = "/view/" + str(int(image__pk)-1)
+                url_to_redirect_to = "/" + repo + "/view/" + str(int(image__pk)-1)
             # if they hit the next button
             # (or something fishy is going on)
             else:
-                url_to_redirect_to = "/view/" + str(int(image__pk)+1)
+                url_to_redirect_to = "/" + repo + "/view/" + str(int(image__pk)+1)
         else:
-            url_to_redirect_to = "/view_random" 
+            url_to_redirect_to = "/" + repo + "/view_random" 
             
         return HttpResponseRedirect(url_to_redirect_to)
     
