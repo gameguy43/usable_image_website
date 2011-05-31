@@ -15,7 +15,11 @@ http://www.opensource.org/licenses/gpl-license.php
 @import url("/static/css/text.css");
 @import url("/static/css/960.css");
 
-body {font-size: 18px;font-family: Georgia}
+em {
+    font-style: normal;
+    font-weight: bold;
+}
+body {font-size: 18px;font-family: Helvetica, Georgia, Arial}
 h1,h2,h3,h4 {letter-spacing:-1px}
 h1,h2,h3,h4,#nav,small,.postmetadata, .small{font-family: Helvetica, Arial;}
 h2 {margin: 0 0 20px 0;padding: 0;color:#666;}
