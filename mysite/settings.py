@@ -1,4 +1,5 @@
 # Django settings for mysite project.
+import usable_image_scraper.config
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -6,20 +7,12 @@ TEMPLATE_DEBUG = DEBUG
 
 # path to here, including the mysite dir at the end. with trailing slash
 #ABS_PATH_TO_THIS_REPO = '/home/usableimages/www/images.freeculture.org/mysite/'
-ABS_PATH_TO_THIS_REPO = '/home/pyrak/workspace/usable_images/webs/mysite/'
+#ABS_PATH_TO_THIS_REPO = '/home/pyrak/workspace/usable_images/webs/mysite/'
+ABS_PATH_TO_THIS_REPO = usable_image_scraper.config.web_code_base_dir
 
 DATA_ROOT = ABS_PATH_TO_THIS_REPO + 'static/data/'
 
 RELATIVE_DATA_ROOT = '/static/data/'
-
-data_sqlite_db_user =  ''
-data_sqlite_db_pass =  ''
-data_sqlite_db_host =  ''
-data_sqlite_db_db = DATA_ROOT + 'metadata.sqlite'
-
-#data_sqlite_db = create_engine('sqlite://%s:%s@%s/%s' % (data_sqlite_db_user, data_sqlite_db_pass, data_sqlite_db_host, data_sqlite_db_db))
-
-METADATA_ENGINE = 'sqlite://%s:%s@%s/%s' % (data_sqlite_db_user, data_sqlite_db_pass, data_sqlite_db_host, data_sqlite_db_db)
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
