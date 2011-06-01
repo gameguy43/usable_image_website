@@ -33,10 +33,11 @@ def about(request):
     return render_to_response('about.html')
 
 def view_random(request, repo):
-    highest_image_pk = 12049
-    # TODO: actually write code to figure out the above
-    random_image_pk = random.randrange(highest_image_pk)
-    url_to_redirect_to = "view/" + str(random_image_pk)
+    print repo
+    myscraper = usable_image_scraper.scraper.mkscraper(repo)
+    random_image_pk = myscraper.db.get_random_valid_image_id()
+    url_to_redirect_to = '/' + repo + "/view/" + str(random_image_pk)
+    print url_to_redirect_to
     return HttpResponseRedirect(url_to_redirect_to)
 
 def view_image_json(request, repo, image__pk):
@@ -56,29 +57,26 @@ def view_image(request, repo, image__pk):
     myscraper.set_web_vars(**kwargs)
     image = myscraper.db.get_image_metadata_dict(image__pk)
 
+    # if we've stumbled upon an image that appears to not be in our database
+    # (really, this shouldn't happen--this is a relic from a stupider implementation of next/previous)
     if not image or not image['url_to_lores_img']:
         referrer = request.META.get('HTTP_REFERER')
         if not referrer.find('/view/') == (-1):
-            prev_id = int(referrer.rstrip('/').rsplit('/', 1)[1])
+            referrer_id = int(referrer.rstrip('/').rsplit('/', 1)[1])
+
+            next_id = myscraper.db.get_next_successful_image_id(image__pk)
+            prev_id = myscraper.db.get_next_successful_image_id(image__pk)
             # if they hit the previous button
-            if int(image__pk) < prev_id:
-                url_to_redirect_to = "/" + repo + "/view/" + str(int(image__pk)-1)
+            if int(image__pk) < referrer_id:
+                url_to_redirect_to = "/" + repo + "/view/" + str(prev_id)
             # if they hit the next button
             # (or something fishy is going on)
             else:
-                url_to_redirect_to = "/" + repo + "/view/" + str(int(image__pk)+1)
+                url_to_redirect_to = "/" + repo + "/view/" + str(next_id)
         else:
             url_to_redirect_to = "/" + repo + "/view_random" 
             
         return HttpResponseRedirect(url_to_redirect_to)
-    
-    '''
-    db_connection = get_metadata_db_connection()
-    image_tuples = db_connection.execute("select * from phil where id = %s" % image__pk).fetchone().items()
-    image = {}
-    image.update(image_tuples)
-    '''
-    
 
     html = myscraper.get_image_html_repr(image__pk)
 
